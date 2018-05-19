@@ -233,12 +233,14 @@ abstract class BaseReader implements IReader
      */
     public function securityScan($xml)
     {
+/*
         $pattern = '/\\0?' . implode('\\0?', str_split('<!DOCTYPE')) . '\\0?/';
         if (preg_match($pattern, $xml)) {
             throw new Exception('Detected use of ENTITY in XML, spreadsheet file load() aborted to prevent XXE/XEE attacks');
         }
+*/
+        return str_replace( ['<x:', '</x:', '<d:', '</d:'], ['<', '</', '<', '</'], $xml );
 
-        return $xml;
     }
 
     /**
